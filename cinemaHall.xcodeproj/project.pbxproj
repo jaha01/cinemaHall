@@ -10,9 +10,29 @@
 		44AD61E32D78D45A00A3BFEB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD61E22D78D45A00A3BFEB /* AppDelegate.swift */; };
 		44AD61E52D78D45A00A3BFEB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD61E42D78D45A00A3BFEB /* SceneDelegate.swift */; };
 		44AD61E72D78D45A00A3BFEB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD61E62D78D45A00A3BFEB /* ViewController.swift */; };
-		44AD61EA2D78D45A00A3BFEB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44AD61E82D78D45A00A3BFEB /* Main.storyboard */; };
 		44AD61EC2D78D45F00A3BFEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44AD61EB2D78D45F00A3BFEB /* Assets.xcassets */; };
 		44AD61EF2D78D45F00A3BFEB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44AD61ED2D78D45F00A3BFEB /* LaunchScreen.storyboard */; };
+		44AD61F72D78D6D900A3BFEB /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD61F62D78D6D900A3BFEB /* Model.swift */; };
+		44AD61F92D78D73100A3BFEB /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD61F82D78D73000A3BFEB /* NetworkManager.swift */; };
+		44AD61FB2D78DFB000A3BFEB /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD61FA2D78DFB000A3BFEB /* NetworkService.swift */; };
+		44AD61FD2D78E98600A3BFEB /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD61FC2D78E98600A3BFEB /* NetworkConfig.swift */; };
+		44AD61FF2D79B00F00A3BFEB /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD61FE2D79B00F00A3BFEB /* Interactor.swift */; };
+		44AD62012D79B01F00A3BFEB /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD62002D79B01F00A3BFEB /* Presenter.swift */; };
+		44AD62032D79B03400A3BFEB /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD62022D79B03400A3BFEB /* Builder.swift */; };
+		44AD62062D79B33500A3BFEB /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD62052D79B33500A3BFEB /* Router.swift */; };
+		44AD62092D79C5C200A3BFEB /* DI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD62082D79C5C200A3BFEB /* DI.swift */; };
+		44AD620B2D79CC2200A3BFEB /* HallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD620A2D79CC2200A3BFEB /* HallView.swift */; };
+		44AD620D2D7A06B800A3BFEB /* SeatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD620C2D7A06B800A3BFEB /* SeatView.swift */; };
+		44AD62102D7B8B3100A3BFEB /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD620F2D7B8B3100A3BFEB /* OrderViewController.swift */; };
+		44AD62122D7B919E00A3BFEB /* OrderInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD62112D7B919E00A3BFEB /* OrderInteractor.swift */; };
+		44AD62142D7B91AC00A3BFEB /* OrderPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD62132D7B91AC00A3BFEB /* OrderPresenter.swift */; };
+		44AD62162D7B91EA00A3BFEB /* OrderBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD62152D7B91EA00A3BFEB /* OrderBuilder.swift */; };
+		44AD62192D7DAE5A00A3BFEB /* TotalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD62182D7DAE5A00A3BFEB /* TotalView.swift */; };
+		44AD621B2D7DC37700A3BFEB /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD621A2D7DC37700A3BFEB /* PaymentViewController.swift */; };
+		44AD621D2D7DC39500A3BFEB /* PaymentInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD621C2D7DC39500A3BFEB /* PaymentInteractor.swift */; };
+		44AD621F2D7DC3A200A3BFEB /* PaymentPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD621E2D7DC3A200A3BFEB /* PaymentPresenter.swift */; };
+		44AD62212D7DC3B400A3BFEB /* PaymentBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD62202D7DC3B400A3BFEB /* PaymentBuilder.swift */; };
+		44AD62242D7DC54200A3BFEB /* OrderRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD62232D7DC54200A3BFEB /* OrderRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,10 +40,30 @@
 		44AD61E22D78D45A00A3BFEB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44AD61E42D78D45A00A3BFEB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		44AD61E62D78D45A00A3BFEB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		44AD61E92D78D45A00A3BFEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		44AD61EB2D78D45F00A3BFEB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		44AD61EE2D78D45F00A3BFEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		44AD61F02D78D45F00A3BFEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		44AD61F62D78D6D900A3BFEB /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		44AD61F82D78D73000A3BFEB /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		44AD61FA2D78DFB000A3BFEB /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		44AD61FC2D78E98600A3BFEB /* NetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
+		44AD61FE2D79B00F00A3BFEB /* Interactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
+		44AD62002D79B01F00A3BFEB /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
+		44AD62022D79B03400A3BFEB /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
+		44AD62052D79B33500A3BFEB /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		44AD62082D79C5C200A3BFEB /* DI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DI.swift; sourceTree = "<group>"; };
+		44AD620A2D79CC2200A3BFEB /* HallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HallView.swift; sourceTree = "<group>"; };
+		44AD620C2D7A06B800A3BFEB /* SeatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatView.swift; sourceTree = "<group>"; };
+		44AD620F2D7B8B3100A3BFEB /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
+		44AD62112D7B919E00A3BFEB /* OrderInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderInteractor.swift; sourceTree = "<group>"; };
+		44AD62132D7B91AC00A3BFEB /* OrderPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPresenter.swift; sourceTree = "<group>"; };
+		44AD62152D7B91EA00A3BFEB /* OrderBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBuilder.swift; sourceTree = "<group>"; };
+		44AD62182D7DAE5A00A3BFEB /* TotalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalView.swift; sourceTree = "<group>"; };
+		44AD621A2D7DC37700A3BFEB /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
+		44AD621C2D7DC39500A3BFEB /* PaymentInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentInteractor.swift; sourceTree = "<group>"; };
+		44AD621E2D7DC3A200A3BFEB /* PaymentPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentPresenter.swift; sourceTree = "<group>"; };
+		44AD62202D7DC3B400A3BFEB /* PaymentBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentBuilder.swift; sourceTree = "<group>"; };
+		44AD62232D7DC54200A3BFEB /* OrderRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +98,73 @@
 			children = (
 				44AD61E22D78D45A00A3BFEB /* AppDelegate.swift */,
 				44AD61E42D78D45A00A3BFEB /* SceneDelegate.swift */,
-				44AD61E62D78D45A00A3BFEB /* ViewController.swift */,
-				44AD61E82D78D45A00A3BFEB /* Main.storyboard */,
+				44AD62082D79C5C200A3BFEB /* DI.swift */,
+				44AD62072D79B49C00A3BFEB /* Services */,
+				44AD62042D79B03D00A3BFEB /* ViewController */,
+				44AD62172D7D1C3C00A3BFEB /* Orders */,
+				44AD62222D7DC3C000A3BFEB /* Payment */,
+				44AD61F62D78D6D900A3BFEB /* Model.swift */,
 				44AD61EB2D78D45F00A3BFEB /* Assets.xcassets */,
 				44AD61ED2D78D45F00A3BFEB /* LaunchScreen.storyboard */,
 				44AD61F02D78D45F00A3BFEB /* Info.plist */,
 			);
 			path = cinemaHall;
+			sourceTree = "<group>";
+		};
+		44AD62042D79B03D00A3BFEB /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				44AD61E62D78D45A00A3BFEB /* ViewController.swift */,
+				44AD61FE2D79B00F00A3BFEB /* Interactor.swift */,
+				44AD62002D79B01F00A3BFEB /* Presenter.swift */,
+				44AD62052D79B33500A3BFEB /* Router.swift */,
+				44AD62022D79B03400A3BFEB /* Builder.swift */,
+				44AD620E2D7A06C100A3BFEB /* Views */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		44AD62072D79B49C00A3BFEB /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				44AD61F82D78D73000A3BFEB /* NetworkManager.swift */,
+				44AD61FA2D78DFB000A3BFEB /* NetworkService.swift */,
+				44AD61FC2D78E98600A3BFEB /* NetworkConfig.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		44AD620E2D7A06C100A3BFEB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				44AD620A2D79CC2200A3BFEB /* HallView.swift */,
+				44AD62182D7DAE5A00A3BFEB /* TotalView.swift */,
+				44AD620C2D7A06B800A3BFEB /* SeatView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		44AD62172D7D1C3C00A3BFEB /* Orders */ = {
+			isa = PBXGroup;
+			children = (
+				44AD620F2D7B8B3100A3BFEB /* OrderViewController.swift */,
+				44AD62112D7B919E00A3BFEB /* OrderInteractor.swift */,
+				44AD62132D7B91AC00A3BFEB /* OrderPresenter.swift */,
+				44AD62232D7DC54200A3BFEB /* OrderRouter.swift */,
+				44AD62152D7B91EA00A3BFEB /* OrderBuilder.swift */,
+			);
+			path = Orders;
+			sourceTree = "<group>";
+		};
+		44AD62222D7DC3C000A3BFEB /* Payment */ = {
+			isa = PBXGroup;
+			children = (
+				44AD621A2D7DC37700A3BFEB /* PaymentViewController.swift */,
+				44AD621C2D7DC39500A3BFEB /* PaymentInteractor.swift */,
+				44AD621E2D7DC3A200A3BFEB /* PaymentPresenter.swift */,
+				44AD62202D7DC3B400A3BFEB /* PaymentBuilder.swift */,
+			);
+			path = Payment;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,7 +227,6 @@
 			files = (
 				44AD61EF2D78D45F00A3BFEB /* LaunchScreen.storyboard in Resources */,
 				44AD61EC2D78D45F00A3BFEB /* Assets.xcassets in Resources */,
-				44AD61EA2D78D45A00A3BFEB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +237,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44AD62062D79B33500A3BFEB /* Router.swift in Sources */,
+				44AD62012D79B01F00A3BFEB /* Presenter.swift in Sources */,
+				44AD61FD2D78E98600A3BFEB /* NetworkConfig.swift in Sources */,
+				44AD620B2D79CC2200A3BFEB /* HallView.swift in Sources */,
+				44AD62212D7DC3B400A3BFEB /* PaymentBuilder.swift in Sources */,
 				44AD61E72D78D45A00A3BFEB /* ViewController.swift in Sources */,
+				44AD61F72D78D6D900A3BFEB /* Model.swift in Sources */,
+				44AD61F92D78D73100A3BFEB /* NetworkManager.swift in Sources */,
+				44AD621B2D7DC37700A3BFEB /* PaymentViewController.swift in Sources */,
+				44AD62122D7B919E00A3BFEB /* OrderInteractor.swift in Sources */,
 				44AD61E32D78D45A00A3BFEB /* AppDelegate.swift in Sources */,
+				44AD61FB2D78DFB000A3BFEB /* NetworkService.swift in Sources */,
+				44AD62092D79C5C200A3BFEB /* DI.swift in Sources */,
+				44AD62192D7DAE5A00A3BFEB /* TotalView.swift in Sources */,
+				44AD61FF2D79B00F00A3BFEB /* Interactor.swift in Sources */,
+				44AD62102D7B8B3100A3BFEB /* OrderViewController.swift in Sources */,
+				44AD620D2D7A06B800A3BFEB /* SeatView.swift in Sources */,
+				44AD62242D7DC54200A3BFEB /* OrderRouter.swift in Sources */,
+				44AD621D2D7DC39500A3BFEB /* PaymentInteractor.swift in Sources */,
 				44AD61E52D78D45A00A3BFEB /* SceneDelegate.swift in Sources */,
+				44AD62032D79B03400A3BFEB /* Builder.swift in Sources */,
+				44AD621F2D7DC3A200A3BFEB /* PaymentPresenter.swift in Sources */,
+				44AD62162D7B91EA00A3BFEB /* OrderBuilder.swift in Sources */,
+				44AD62142D7B91AC00A3BFEB /* OrderPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		44AD61E82D78D45A00A3BFEB /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				44AD61E92D78D45A00A3BFEB /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		44AD61ED2D78D45F00A3BFEB /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -293,7 +405,6 @@
 				INFOPLIST_FILE = cinemaHall/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -320,7 +431,6 @@
 				INFOPLIST_FILE = cinemaHall/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
