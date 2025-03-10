@@ -13,7 +13,7 @@ protocol PresenterProtocol {
     func setPrice(sum: Int)
 }
 
-final class Presenter: PresenterProtocol {
+final class HallPresenter: PresenterProtocol {
     // MARK: - Public properties
     var viewController: ViewControllerProtocol!
     

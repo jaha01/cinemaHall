@@ -7,11 +7,11 @@
 
 import UIKit
 
-class HallView: UIView {
+final class HallView: UIView {
     
     // MARK: - Public Properties
     
-    let hallMapView: UIView = { // Внутри будет схема зала
+    let hallMapView: UIView = {
         let hallMapView = UIView()
         hallMapView.translatesAutoresizingMaskIntoConstraints = false
         return hallMapView
@@ -37,7 +37,7 @@ class HallView: UIView {
     
     private let movie: UILabel = {
         let label = UILabel()
-        label.text = "Название Фильма" // Если бы было в json брали бы оттуда
+        label.text = "Название Фильма"
         label.font = UIFont(name: "Gill Sans Bold", size: 24)!
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -227,7 +227,6 @@ class HallView: UIView {
             standartBtn.leadingAnchor.constraint(equalTo: vipBtn.leadingAnchor),
             standartBtn.trailingAnchor.constraint(equalTo: standartBtn.leadingAnchor, constant: 24),
             standartBtn.bottomAnchor.constraint(equalTo: standartBtn.topAnchor, constant: 24),
-            //            standartBtn.centerYAnchor.constraint(equalTo: vipBtn.centerYAnchor),
             
             standartLabel.leadingAnchor.constraint(equalTo: standartBtn.trailingAnchor, constant: 12),
             standartLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
@@ -242,7 +241,7 @@ class HallView: UIView {
             hallMapView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             hallMapView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             hallMapView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            hallMapView.widthAnchor.constraint(equalToConstant: 558), // Пока фиксируем размер, позже из JSON
+            hallMapView.widthAnchor.constraint(equalToConstant: 558),
             hallMapView.heightAnchor.constraint(equalToConstant: 346)
         ])
     }

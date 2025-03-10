@@ -11,7 +11,7 @@ protocol SeatViewDelegate: AnyObject {
     func didTapSeat(seatWithPrice: SeatWithPrice)
 }
 
-class SeatView: UIButton {
+final class SeatView: UIButton {
     
     // MARK: - Public properties
     
@@ -19,8 +19,8 @@ class SeatView: UIButton {
     
     // MARK: - Private properties
     
+    private static let selectedColor = UIColor.green
     private let seatWithPrice: SeatWithPrice
-    
     
     init(seatWithPrice: SeatWithPrice) {
         self.seatWithPrice = seatWithPrice
@@ -53,10 +53,10 @@ class SeatView: UIButton {
     }
     
     @objc private func seatTapped() {
-        let seat = seatWithPrice.seat
-        let price = seatWithPrice.price
+//        let seat = seatWithPrice.seat
+//        let price = seatWithPrice.price MARK: - DELETEEEEEE
         delegate?.didTapSeat(seatWithPrice: seatWithPrice)
-        backgroundColor = backgroundColor == .green ? seatColor() : .green
+        backgroundColor = backgroundColor == SeatView.selectedColor ? seatColor() : SeatView.selectedColor
     }
     
     private func seatColor() -> UIColor {

@@ -26,14 +26,14 @@ class OrderTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         setup()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Public properties
@@ -41,7 +41,6 @@ class OrderTableViewCell: UITableViewCell {
     func configure(seat: SeatWithPrice) {
         placeLabel.text = "ряд \(seat.seat.rowNum!), место: \(seat.seat.place!)"
         priceLabel.text = "цена: \(seat.price)"
-        
     }
     
     // MARK: - Private methods
@@ -59,7 +58,5 @@ class OrderTableViewCell: UITableViewCell {
              priceLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
              priceLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12)
          ])
-    
     }
-
 }

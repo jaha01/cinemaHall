@@ -12,7 +12,7 @@ protocol RouterProtocol {
     func navigateToOrderScreen(selectedSeats: [SeatWithPrice], totalView: TotalView)
 }
 
-final class Router: RouterProtocol {
+final class HallRouter: RouterProtocol {
     
     // MARK: - Public properties
     

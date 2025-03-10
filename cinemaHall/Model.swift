@@ -45,7 +45,6 @@ struct SeatType: Decodable {
     let seatType: String
 }
 
-// Сейчас Seat не содержит цену, поэтому добавим:
 struct SeatWithPrice: Equatable {
     let seat: Seat
     let price: Int

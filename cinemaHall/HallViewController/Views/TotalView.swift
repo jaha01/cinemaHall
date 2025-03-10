@@ -11,7 +11,7 @@ protocol TotalViewDelegate: AnyObject {
     func didTapNextBtn()
 }
 
-class TotalView: UIView {
+final class TotalView: UIView {
     
     // MARK: - Public Properties
     
@@ -32,7 +32,6 @@ class TotalView: UIView {
         button.addTarget(self, action: #selector(didTapNextBtn), for: .touchUpInside)
         return button
     }()
-    
     
     private let total: UILabel = {
         let label = UILabel()
@@ -62,9 +61,9 @@ class TotalView: UIView {
     
     // MARK: Public methods
     
-    func configure(price: Int, bntName: String){
+    func configure(price: Int, btnName: String){
         total.text = String(price)
-        nextBtn.setTitle(bntName, for: .normal)
+        nextBtn.setTitle(btnName, for: .normal)
     }
     
     // MARK: Private methods

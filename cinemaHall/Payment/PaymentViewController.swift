@@ -122,24 +122,24 @@ final class PaymentViewController: UIViewController, PaymentViewControllerProtoc
         payView.addSubview(nameField)
         payView.addSubview(emailField)
         totalView.delegate = self
+        totalView.isUserInteractionEnabled = true
         setConstraints()
         interactor.loadData()
-        
     }
 
     // MARK: - Public methods
     
     func updateTotalView(price: Int) {
-        totalView.configure(price: price, bntName: "Оплатить")
+        totalView.configure(price: price, btnName: "Оплатить")
     }
     
-    func didTapNextBtn() { // MARK: - кнопка не нажимается после того как кликнул хотя бы на один textField
-        if Validator.isValidEmail(for: emailField.text!) {
+    func didTapNextBtn() {
+        if !Validator.isValidEmail(for: emailField.text!) {
             emailField.animateError()
             return
         }
 
-        if Validator.isValidName(for: nameField.text!) {
+        if !Validator.isValidName(for: nameField.text!) {
             nameField.animateError()
             return
         }
@@ -199,9 +199,7 @@ final class PaymentViewController: UIViewController, PaymentViewControllerProtoc
             emailField.topAnchor.constraint(equalTo: nameField.bottomAnchor, constant: 20),
             emailField.leadingAnchor.constraint(equalTo: panField.leadingAnchor),
             emailField.trailingAnchor.constraint(equalTo: panField.trailingAnchor),
-            emailField.heightAnchor.constraint(equalToConstant: 40),
-            
-            
+            emailField.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
     
@@ -258,7 +256,7 @@ extension PaymentViewController: UITextFieldDelegate {
         
         for (index, character) in cleanText.enumerated() {
             if index == 2 {
-                formattedText.append("/") // Вставляем / после 2 символа
+                formattedText.append("/") 
             }
             formattedText.append(character)
         }
@@ -268,6 +266,7 @@ extension PaymentViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        view.endEditing(true)
         return true
     }
 }

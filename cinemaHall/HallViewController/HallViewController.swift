@@ -13,15 +13,15 @@ protocol ViewControllerProtocol: AnyObject {
     func updateHallView(totalPrice: Int)
 }
 
-
-final class ViewController: UIViewController, ViewControllerProtocol, SeatViewDelegate, TotalViewDelegate {
+final class HallViewController: UIViewController, ViewControllerProtocol {
     
     // MARK: - Public Properties
     
     var interactor: InteractorProtocol!
-    var selectedSeats: [SeatWithPrice] = []
     
     // MARK: - Private Properties
+    private var selectedSeats: [SeatWithPrice] = []
+    
     private let hallView: HallView = {
         let hallView = HallView()
         hallView.translatesAutoresizingMaskIntoConstraints = false
@@ -30,15 +30,14 @@ final class ViewController: UIViewController, ViewControllerProtocol, SeatViewDe
     
     private let totalView = TotalView()
     
-    
     // MARK: - Public methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        interactor.loadData()
         totalView.isHidden = true
         totalView.delegate = self
+        interactor.loadData()
     }
     
     func configureHall(sessionInfo: SessionInfo, seatsType: [SeatType]) {
@@ -61,19 +60,6 @@ final class ViewController: UIViewController, ViewControllerProtocol, SeatViewDe
         }
     }
     
-    func didTapSeat(seatWithPrice: SeatWithPrice) {
-        if let index = selectedSeats.firstIndex(of: seatWithPrice) {
-            selectedSeats.remove(at: index)
-        } else {
-            selectedSeats.append(seatWithPrice)
-        }
-        interactor.calcTotalSum(seats: selectedSeats)
-    }
-    
-    func didTapNextBtn() {
-        interactor.transferOrder(selectedSeats: selectedSeats, totalView: totalView)
-    }
-    
     // MARK: - Private methods
     
     func updateHallView(totalPrice: Int) {
@@ -81,7 +67,7 @@ final class ViewController: UIViewController, ViewControllerProtocol, SeatViewDe
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 self.totalView.isHidden = false
-                self.totalView.configure(price: totalPrice, bntName: "Далее")
+                self.totalView.configure(price: totalPrice, btnName: "Далее")
             }
         } else {
             totalView.isHidden = true
@@ -105,4 +91,21 @@ final class ViewController: UIViewController, ViewControllerProtocol, SeatViewDe
         ])
     }
     
+}
+
+extension HallViewController: SeatViewDelegate {
+    func didTapSeat(seatWithPrice: SeatWithPrice) {
+        if let index = selectedSeats.firstIndex(of: seatWithPrice) {
+            selectedSeats.remove(at: index)
+        } else {
+            selectedSeats.append(seatWithPrice)
+        }
+        interactor.calcTotalSum(seats: selectedSeats)
+    }
+}
+
+extension HallViewController: TotalViewDelegate {
+    func didTapNextBtn() {
+        interactor.transferOrder(selectedSeats: selectedSeats, totalView: totalView)
+    }
 }

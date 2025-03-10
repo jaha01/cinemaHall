@@ -11,7 +11,7 @@ protocol OrderViewControllerProtocol: AnyObject {
     func updateViews(selectedSeats: [SeatWithPrice], price: Int)
 }
 
-final class OrderViewController: UIViewController, OrderViewControllerProtocol, TotalViewDelegate {
+final class OrderViewController: UIViewController, OrderViewControllerProtocol {
     
     // MARK: - Public Properties
     
@@ -44,16 +44,12 @@ final class OrderViewController: UIViewController, OrderViewControllerProtocol, 
     // MARK: - Public methods
     
     func updateViews(selectedSeats: [SeatWithPrice], price: Int) {
-        DispatchQueue.main.async { [weak self] in // MARK: - ЗДЕСЬ ПРАВИЛЬНО? или self.selectedSeats = selectedSeats выносим?
+        DispatchQueue.main.async { [weak self] in 
             guard let self = self else { return }
             self.selectedSeats = selectedSeats
-            self.totalView.configure(price: price, bntName: "Оформить")
+            self.totalView.configure(price: price, btnName: "Оформить")
             self.ticketsList.reloadData()
         }
-    }
-    
-    func didTapNextBtn() {
-        interactor.goToPayment()
     }
     
     // MARK: - Private methods
@@ -89,4 +85,10 @@ extension OrderViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+}
+
+extension OrderViewController: TotalViewDelegate {
+    func didTapNextBtn() {
+        interactor.goToPayment()
+    }
 }

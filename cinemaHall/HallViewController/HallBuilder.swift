@@ -7,13 +7,13 @@
 
 import UIKit
 
-final class Builder {
+final class HallBuilder {
     
     func build() -> UIViewController {
-        let controller = ViewController()
-        let interactor = Interactor(networkService: DI.shared.networkClient)
-        let presenter = Presenter()
-        let router = Router()
+        let controller = HallViewController()
+        let interactor = HallInteractor(networkService: DI.shared.networkClient)
+        let presenter = HallPresenter()
+        let router = HallRouter()
         
         controller.interactor = interactor
         interactor.presenter = presenter

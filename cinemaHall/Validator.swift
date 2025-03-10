@@ -18,14 +18,14 @@ class Validator {
     
     static func isValidName(for name: String) -> Bool {
         let name = name.trimmingCharacters(in: .whitespacesAndNewlines)
-        let nameRegEx = "^[A-Za-z\\s]+$" // Латинские буквы и пробелы
+        let nameRegEx = "^[A-Za-z\\s]+$"
         let namePred = NSPredicate(format: "SELF MATCHES %@", nameRegEx)
         return namePred.evaluate(with: name)
     }
     
     static func isValidNumber(for number: String) -> Bool {
         let number = number.trimmingCharacters(in: .whitespacesAndNewlines)
-        let numberRegEx = "^[0-9]+$" // Только цифры
+        let numberRegEx = "^[0-9]+$" 
         let numberPred = NSPredicate(format: "SELF MATCHES %@", numberRegEx)
         return numberPred.evaluate(with: number)
     }
