@@ -53,8 +53,6 @@ final class SeatView: UIButton {
     }
     
     @objc private func seatTapped() {
-//        let seat = seatWithPrice.seat
-//        let price = seatWithPrice.price MARK: - DELETEEEEEE
         delegate?.didTapSeat(seatWithPrice: seatWithPrice)
         backgroundColor = backgroundColor == SeatView.selectedColor ? seatColor() : SeatView.selectedColor
     }
