@@ -9,7 +9,7 @@ import UIKit
 
 final class PaymentBuilder {
     
-    func build(totalView: TotalView) -> UIViewController {
+    func build(selectedSeats: [SeatWithPrice]) -> UIViewController {
         let controller = PaymentViewController()
         let interactor = PaymentInteractor()
         let presenter = PaymentPresenter()
@@ -17,7 +17,7 @@ final class PaymentBuilder {
         controller.interactor = interactor
         interactor.presenter = presenter
         presenter.viewController = controller
-        controller.totalView = totalView
+        interactor.selectedSeats = selectedSeats
         
         return controller
     }

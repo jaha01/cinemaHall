@@ -8,7 +8,7 @@
 import UIKit
 
 protocol OrderRouterProtocol {
-    func showOrder(totalView: TotalView)
+    func showOrder(selectedSeats: [SeatWithPrice])
 }
 
 final class OrderRouter: OrderRouterProtocol {
@@ -17,9 +17,11 @@ final class OrderRouter: OrderRouterProtocol {
     
     var viewController: UIViewController!
     
-     func showOrder(totalView: TotalView) {
+    // MARK: - Public methods
+    
+     func showOrder(selectedSeats: [SeatWithPrice]) {
          guard let controller = viewController else { return }
-         let paymentVC = PaymentBuilder().build(totalView: totalView)
+         let paymentVC = PaymentBuilder().build(selectedSeats: selectedSeats)
          let nav = UINavigationController(rootViewController: paymentVC)
          nav.navigationBar.backgroundColor = .white
          controller.present(nav, animated: true, completion: nil)

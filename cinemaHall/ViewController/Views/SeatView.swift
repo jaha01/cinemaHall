@@ -55,7 +55,6 @@ class SeatView: UIButton {
     @objc private func seatTapped() {
         let seat = seatWithPrice.seat
         let price = seatWithPrice.price
-        print("Выбрано место: ряд \(seat.rowNum ?? "?") место \(seat.place ?? "?"), цена \(price)")
         delegate?.didTapSeat(seatWithPrice: seatWithPrice)
         backgroundColor = backgroundColor == .green ? seatColor() : .green
     }

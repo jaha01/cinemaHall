@@ -17,32 +17,11 @@ final class Router: RouterProtocol {
     // MARK: - Public properties
     
     var viewController: UIViewController!
-    
-//    func prepareOrder(selectedSeats: [SeatWithPrice]) {
-//        guard let controller = viewController as? ViewController else { return }
-//        let tableVC = OrderBuilder().build() as! OrderViewController
-//        tableVC.selectedSeats = selectedSeats // Передаем обновленные данные
-//
-//        // Устанавливаем делегат, чтобы обновить данные
-////        tableVC.seatsDelegate = controller
-//
-//        let nav = UINavigationController(rootViewController: tableVC)
-//        nav.navigationBar.backgroundColor = .white
-//
-//        if let sheet = nav.sheetPresentationController {
-//            sheet.detents = [.medium()]
-//            sheet.preferredCornerRadius = 25
-//            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
-//            sheet.prefersGrabberVisible = true
-//        }
-//
-//        viewController.present(nav, animated: true, completion: nil)
-//    }
-       
 
+    // MARK: - Public methods
+    
     func navigateToOrderScreen(selectedSeats: [SeatWithPrice], totalView: TotalView) {
-        totalView.removeTargets()
-        let orderVC = OrderBuilder().build(selectedSeats: selectedSeats, totalView: totalView)
+        let orderVC = OrderBuilder().build(selectedSeats: selectedSeats)
         let navigationController = viewController.navigationController
         navigationController?.pushViewController(orderVC, animated: true)
     }

@@ -10,10 +10,11 @@ import UIKit
 protocol ViewControllerProtocol: AnyObject {
     func configureSeats(seats: [SeatWithPrice])
     func configureHall(sessionInfo: SessionInfo, seatsType: [SeatType])
+    func updateHallView(totalPrice: Int)
 }
 
 
-final class ViewController: UIViewController, ViewControllerProtocol, SeatViewDelegate {
+final class ViewController: UIViewController, ViewControllerProtocol, SeatViewDelegate, TotalViewDelegate {
     
     // MARK: - Public Properties
     
@@ -21,7 +22,12 @@ final class ViewController: UIViewController, ViewControllerProtocol, SeatViewDe
     var selectedSeats: [SeatWithPrice] = []
     
     // MARK: - Private Properties
-    private var hallView: HallView!
+    private let hallView: HallView = {
+        let hallView = HallView()
+        hallView.translatesAutoresizingMaskIntoConstraints = false
+        return hallView
+    }()
+    
     private let totalView = TotalView()
     
     
@@ -32,19 +38,15 @@ final class ViewController: UIViewController, ViewControllerProtocol, SeatViewDe
         view.backgroundColor = .systemBackground
         interactor.loadData()
         totalView.isHidden = true
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        updateHallView()
-        totalView.nextBtn.addTarget(self, action: #selector(didTapNextBtn), for: .touchUpInside)
+        totalView.delegate = self
     }
     
     func configureHall(sessionInfo: SessionInfo, seatsType: [SeatType]) {
-        
-        hallView = HallView(sessionInfo: sessionInfo, seatsType: seatsType)
-        setupUI()
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.hallView.configure(sessionInfo: sessionInfo, seatsType: seatsType)
+            self.setupUI()
+        }
     }
     
     func configureSeats(seats: [SeatWithPrice]) {
@@ -65,37 +67,22 @@ final class ViewController: UIViewController, ViewControllerProtocol, SeatViewDe
         } else {
             selectedSeats.append(seatWithPrice)
         }
-        
-        updateHallView()
+        interactor.calcTotalSum(seats: selectedSeats)
     }
     
-    
-    func didUpdateSelectedSeats(selectedSeats: [SeatWithPrice]) {
-        self.selectedSeats = selectedSeats
-        print("Данные обновлены в ViewController: \(selectedSeats)")
+    func didTapNextBtn() {
+        interactor.transferOrder(selectedSeats: selectedSeats, totalView: totalView)
     }
-    
     
     // MARK: - Private methods
     
-    private func updateHallView() {
-        if selectedSeats.count > 0 {
-            totalView.isHidden = false
-                // MARK: - ИЛИ ЛУЧШЕ ВЫЗВАТЬ ИНИТ А В ЭЛС ДЕИНИТ?
-            let totalPrice = selectedSeats.reduce(0) { $0 + $1.price } // interactor!
-            totalView.total.text = String(totalPrice)
-            hallView.addSubview(totalView) // MARK: - !!!!!!!!!!!
-            NSLayoutConstraint.activate([
-                hallView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-                hallView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-                hallView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-                hallView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-                
-                totalView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-                totalView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-                totalView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-//                totalView.topAnchor.constraint(equalTo: totalView.bottomAnchor, constant: -80) heightAnchor!
-                ])
+    func updateHallView(totalPrice: Int) {
+        if totalPrice > 0 {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.totalView.isHidden = false
+                self.totalView.configure(price: totalPrice, bntName: "Далее")
+            }
         } else {
             totalView.isHidden = true
         }
@@ -104,7 +91,6 @@ final class ViewController: UIViewController, ViewControllerProtocol, SeatViewDe
     private func setupUI() {
         view.addSubview(hallView)
         hallView.addSubview(totalView)
-        hallView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             hallView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -115,16 +101,8 @@ final class ViewController: UIViewController, ViewControllerProtocol, SeatViewDe
             totalView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             totalView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             totalView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            totalView.topAnchor.constraint(equalTo: totalView.bottomAnchor, constant: -80)
+            totalView.heightAnchor.constraint(equalToConstant: 80)
         ])
     }
     
-    @objc private func didTapNextBtn() {
-        print("didTapNextBtn")
-        interactor.transferOrder(selectedSeats: selectedSeats, totalView: totalView)
-    }
-    
-    
 }
-
-

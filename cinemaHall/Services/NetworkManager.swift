@@ -26,6 +26,7 @@ class NetworkManager : NSObject, NetworkManagerProtocol {
                 switch response.statusCode {
                 case 200..<400:
                     let jsonDecoder = JSONDecoder()
+                    jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
                     jsonDecoder.dateDecodingStrategy = .formatted(DateFormatter.yyyyMMdd)
                     
                     do {

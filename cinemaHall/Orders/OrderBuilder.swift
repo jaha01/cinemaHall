@@ -9,7 +9,7 @@ import UIKit
 
 final class OrderBuilder {
     
-    func build(selectedSeats: [SeatWithPrice], totalView: TotalView) -> UIViewController {
+    func build(selectedSeats: [SeatWithPrice]) -> UIViewController {
         let controller = OrderViewController()
         let interactor = OrderInteractor()
         let presenter = OrderPresenter()
@@ -18,8 +18,7 @@ final class OrderBuilder {
         controller.interactor = interactor
         interactor.presenter = presenter
         presenter.viewController = controller
-        controller.selectedSeats = selectedSeats
-        controller.totalView = totalView
+        interactor.selectedSeats = selectedSeats
         router.viewController = controller
         interactor.router = router
         

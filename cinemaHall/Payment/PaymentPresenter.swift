@@ -8,7 +8,7 @@
 import Foundation
 
 protocol PaymentPresenterProtocol {
-    
+    func setPrice(sum: Int)
 }
 
 final class PaymentPresenter: PaymentPresenterProtocol {
@@ -16,4 +16,10 @@ final class PaymentPresenter: PaymentPresenterProtocol {
     // MARK: - Public Properties
     
     var viewController: PaymentViewControllerProtocol!
+    
+    // MARK: - Public methods
+    
+    func setPrice(sum: Int) {
+        viewController.updateTotalView(price: sum)
+    }
 }

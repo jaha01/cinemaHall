@@ -10,6 +10,7 @@ import Foundation
 protocol PresenterProtocol {
     func prepareSeats(seats: [SeatWithPrice])
     func prepareHall(session: SessionInfo, seatsType: [SeatType])
+    func setPrice(sum: Int)
 }
 
 final class Presenter: PresenterProtocol {
@@ -24,5 +25,9 @@ final class Presenter: PresenterProtocol {
     
     func prepareSeats(seats: [SeatWithPrice]) {
         viewController.configureSeats(seats: seats)
+    }
+    
+    func setPrice(sum: Int) {
+        viewController.updateHallView(totalPrice: sum)
     }
 }

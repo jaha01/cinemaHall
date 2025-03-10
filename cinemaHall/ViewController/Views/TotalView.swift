@@ -7,12 +7,21 @@
 
 import UIKit
 
+protocol TotalViewDelegate: AnyObject {
+    func didTapNextBtn()
+}
+
 class TotalView: UIView {
     
-    let nextBtn: UIButton = {
+    // MARK: - Public Properties
+    
+    weak var delegate: TotalViewDelegate?
+    
+    // MARK: - Private properties
+    
+    private let nextBtn: UIButton = {
         let button = UIButton()
         button.backgroundColor = .red
-        button.setTitle("Далее", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.setTitleColor(.blue, for: .selected)
         button.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
@@ -20,11 +29,12 @@ class TotalView: UIView {
         button.layer.masksToBounds = true
         button.isUserInteractionEnabled = true
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(didTapNextBtn), for: .touchUpInside)
         return button
     }()
     
     
-    let total: UILabel = {
+    private let total: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.font = .systemFont(ofSize: 24, weight: .bold)
@@ -50,6 +60,14 @@ class TotalView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: Public methods
+    
+    func configure(price: Int, bntName: String){
+        total.text = String(price)
+        nextBtn.setTitle(bntName, for: .normal)
+    }
+    
+    // MARK: Private methods
     
     private func setupConstraints() {
         
@@ -66,8 +84,7 @@ class TotalView: UIView {
         ])
     }
     
-    func removeTargets() {
-        nextBtn.removeTarget(nil, action: nil, for: .allEvents)
-       }
-    
+    @objc private func didTapNextBtn() {
+        delegate?.didTapNextBtn()
+    }
 }

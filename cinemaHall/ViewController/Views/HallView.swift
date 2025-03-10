@@ -78,8 +78,8 @@ class HallView: UIView {
     
     private let vipLabel: UILabel = {
         let label = UILabel()
-        //        label.text = "VIP"
         label.textColor = .black
+        label.font = UIFont(name: "Gill Sans SemiBold", size: 18)!
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -95,7 +95,7 @@ class HallView: UIView {
     
     private let comfortLabel: UILabel = {
         let label = UILabel()
-        //        label.text = "Комфорт"
+        label.font = UIFont(name: "Gill Sans SemiBold", size: 18)!
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -111,7 +111,7 @@ class HallView: UIView {
     
     private let standartLabel: UILabel = {
         let label = UILabel()
-        //        label.text = "Комфорт +"
+        label.font = UIFont(name: "Gill Sans SemiBold", size: 18)!
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -124,9 +124,19 @@ class HallView: UIView {
         return label
     }()
     
-    init(sessionInfo: SessionInfo, seatsType: [SeatType]) {
+    init() {
+        super.init(frame: .zero)
+        setupView()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Public methods
+    
+    func configure(sessionInfo: SessionInfo, seatsType: [SeatType]) {
         self.dateTime.text = sessionInfo.date
-        print(sessionInfo.date)
         self.hall.text = sessionInfo.hall
         self.movieState.text = sessionInfo.movieState
         self.freePlaces.text = "Свободных мест: \(sessionInfo.freePlaces)"
@@ -138,18 +148,11 @@ class HallView: UIView {
             default: ""
             }
         }
-        
-        super.init(frame: .zero)
-        setupView()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Private methods
     
-    public func getLabelLength(_ label: UILabel) -> Double {
+    private func getLabelLength(_ label: UILabel) -> Double {
         let size = label.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude))
         return size.width
     }
@@ -208,7 +211,7 @@ class HallView: UIView {
             vipBtn.bottomAnchor.constraint(equalTo: vipBtn.topAnchor, constant: 24),
             
             vipLabel.leadingAnchor.constraint(equalTo: vipBtn.trailingAnchor, constant: 12),
-            vipLabel.trailingAnchor.constraint(equalTo: vipLabel.leadingAnchor, constant: getLabelLength(vipLabel)),
+            vipLabel.trailingAnchor.constraint(equalTo: vipLabel.leadingAnchor, constant: 120),
             vipLabel.centerYAnchor.constraint(equalTo: vipBtn.centerYAnchor),
             
             comfortBtn.leadingAnchor.constraint(equalTo: vipLabel.trailingAnchor, constant: 32),
@@ -217,7 +220,7 @@ class HallView: UIView {
             comfortBtn.centerYAnchor.constraint(equalTo: vipBtn.centerYAnchor),
             
             comfortLabel.leadingAnchor.constraint(equalTo: comfortBtn.trailingAnchor, constant: 12),
-            comfortLabel.trailingAnchor.constraint(equalTo: comfortLabel.leadingAnchor, constant: getLabelLength(comfortLabel)),
+            comfortLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             comfortLabel.centerYAnchor.constraint(equalTo: vipBtn.centerYAnchor),
             
             standartBtn.topAnchor.constraint(equalTo: vipBtn.bottomAnchor, constant: 12),
@@ -227,7 +230,7 @@ class HallView: UIView {
             //            standartBtn.centerYAnchor.constraint(equalTo: vipBtn.centerYAnchor),
             
             standartLabel.leadingAnchor.constraint(equalTo: standartBtn.trailingAnchor, constant: 12),
-            standartLabel.trailingAnchor.constraint(equalTo: standartLabel.leadingAnchor, constant: getLabelLength(standartLabel)),
+            standartLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             standartLabel.centerYAnchor.constraint(equalTo: standartBtn.centerYAnchor),
             
             scrollView.topAnchor.constraint(equalTo: vipBtn.bottomAnchor, constant: 20),

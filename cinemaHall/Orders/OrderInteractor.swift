@@ -8,7 +8,8 @@
 import Foundation
 
 protocol OrderInteractorProtocol {
-    func goToPayment(totalView: TotalView)
+    func loadData()
+    func goToPayment()
 }
 
 final class OrderInteractor: OrderInteractorProtocol {
@@ -17,14 +18,16 @@ final class OrderInteractor: OrderInteractorProtocol {
     
     var presenter: OrderPresenterProtocol!
     var router: OrderRouter!
-    
-    // MARK: - Private properties
-
+    var selectedSeats: [SeatWithPrice] = []
     
     // MARK: - Public methods
     
-    func goToPayment(totalView: TotalView) {
-        router.showOrder(totalView: totalView)
+    func loadData() {
+        presenter.passData(selectedSeats: selectedSeats, sum: selectedSeats.reduce(0) { $0 + $1.price })
+    }
+    
+    func goToPayment() {
+        router.showOrder(selectedSeats: selectedSeats)
     }
     
 }

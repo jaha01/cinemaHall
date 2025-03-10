@@ -11,6 +11,7 @@ import UIKit
 protocol InteractorProtocol {
     func loadData()
     func transferOrder(selectedSeats: [SeatWithPrice], totalView: TotalView)
+    func calcTotalSum(seats: [SeatWithPrice]) 
 }
 
 final class Interactor: InteractorProtocol {
@@ -59,21 +60,16 @@ final class Interactor: InteractorProtocol {
         }
     }
     
+    func calcTotalSum(seats: [SeatWithPrice]) {
+        presenter.setPrice(sum: seats.reduce(0) { $0 + $1.price }) // или let totalPrice, и потом сюда передать?
+    }
+    
     func transferOrder(selectedSeats: [SeatWithPrice], totalView: TotalView) {
         router.navigateToOrderScreen(selectedSeats: selectedSeats, totalView: totalView)
     }
     
     func formatDate(_ date: Date) -> String {
-        return DateFormatter.customDateFormatter.string(from: date)
+        return DateFormatter.longDateFormat.string(from: date)
     }
 }
 
-
-extension DateFormatter {
-    static let customDateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .long // Это будет использовать формат "9 марта 2025"
-        formatter.locale = Locale(identifier: "ru_RU") // Устанавливаем русскую локализацию
-        return formatter
-    }()
-}

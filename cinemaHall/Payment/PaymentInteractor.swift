@@ -8,7 +8,7 @@
 import Foundation
 
 protocol PaymentInteractorProtocol {
-    
+    func loadData()
 }
 
 final class PaymentInteractor: PaymentInteractorProtocol {
@@ -16,4 +16,12 @@ final class PaymentInteractor: PaymentInteractorProtocol {
     // MARK: - Public Properties
     
     var presenter: PaymentPresenterProtocol!
+    var selectedSeats: [SeatWithPrice] = []
+    
+    // MARK: - Public methods
+    
+    func loadData() {
+        presenter.setPrice(sum: selectedSeats.reduce(0) { $0 + $1.price })
+    }
+
 }
