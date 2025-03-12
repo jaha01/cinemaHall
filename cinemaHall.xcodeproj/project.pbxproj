@@ -35,6 +35,7 @@
 		44AD62262D7E362F00A3BFEB /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD62252D7E362F00A3BFEB /* Extentions.swift */; };
 		44AD62282D7E40FC00A3BFEB /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD62272D7E40FC00A3BFEB /* OrderTableViewCell.swift */; };
 		44AD622A2D7E731F00A3BFEB /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD62292D7E731F00A3BFEB /* Validator.swift */; };
+		44AD622C2D8199D100A3BFEB /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD622B2D8199D100A3BFEB /* AlertManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,7 @@
 		44AD62252D7E362F00A3BFEB /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		44AD62272D7E40FC00A3BFEB /* OrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
 		44AD62292D7E731F00A3BFEB /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
+		44AD622B2D8199D100A3BFEB /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 				44AD61F62D78D6D900A3BFEB /* Model.swift */,
 				44AD62252D7E362F00A3BFEB /* Extentions.swift */,
 				44AD62292D7E731F00A3BFEB /* Validator.swift */,
+				44AD622B2D8199D100A3BFEB /* AlertManager.swift */,
 				44AD61EB2D78D45F00A3BFEB /* Assets.xcassets */,
 				44AD61ED2D78D45F00A3BFEB /* LaunchScreen.storyboard */,
 				44AD61F02D78D45F00A3BFEB /* Info.plist */,
@@ -251,6 +254,7 @@
 				44AD62212D7DC3B400A3BFEB /* PaymentBuilder.swift in Sources */,
 				44AD61E72D78D45A00A3BFEB /* HallViewController.swift in Sources */,
 				44AD61F72D78D6D900A3BFEB /* Model.swift in Sources */,
+				44AD622C2D8199D100A3BFEB /* AlertManager.swift in Sources */,
 				44AD61F92D78D73100A3BFEB /* NetworkManager.swift in Sources */,
 				44AD621B2D7DC37700A3BFEB /* PaymentViewController.swift in Sources */,
 				44AD62122D7B919E00A3BFEB /* OrderInteractor.swift in Sources */,

@@ -95,12 +95,27 @@ final class HallViewController: UIViewController, ViewControllerProtocol {
 
 extension HallViewController: SeatViewDelegate {
     func didTapSeat(seatWithPrice: SeatWithPrice) {
+        
         if let index = selectedSeats.firstIndex(of: seatWithPrice) {
             selectedSeats.remove(at: index)
+            updateSeatSelectionState()
         } else {
             selectedSeats.append(seatWithPrice)
+            if selectedSeats.count >= 5 {
+                AlertManager.showAlert(config: AlertConfig(title: "Внимание", message: "Можно выбрать не более 5 мест"))
+                updateSeatSelectionState()
+            }
         }
         interactor.calcTotalSum(seats: selectedSeats)
+    }
+    
+    private func updateSeatSelectionState() {
+        let shouldDisable = selectedSeats.count >= 5
+        for subview in hallView.hallMapView.subviews {
+            if let seatView = subview as? SeatView, !selectedSeats.contains(seatView.seatWithPrice) {
+                seatView.isEnabled = !shouldDisable
+            }
+        }
     }
 }
 
