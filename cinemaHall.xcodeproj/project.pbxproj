@@ -36,6 +36,10 @@
 		44AD62282D7E40FC00A3BFEB /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD62272D7E40FC00A3BFEB /* OrderTableViewCell.swift */; };
 		44AD622A2D7E731F00A3BFEB /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD62292D7E731F00A3BFEB /* Validator.swift */; };
 		44AD622C2D8199D100A3BFEB /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD622B2D8199D100A3BFEB /* AlertManager.swift */; };
+		44AD622E2D81E98500A3BFEB /* HallVieww.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD622D2D81E98500A3BFEB /* HallVieww.swift */; };
+		44AD62312D81F15200A3BFEB /* HallViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD62302D81F15200A3BFEB /* HallViewModel.swift */; };
+		44AD62332D81F16400A3BFEB /* HallModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD62322D81F16400A3BFEB /* HallModel.swift */; };
+		44AD62352D8201BC00A3BFEB /* HallBuilderr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD62342D8201BC00A3BFEB /* HallBuilderr.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +74,10 @@
 		44AD62272D7E40FC00A3BFEB /* OrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
 		44AD62292D7E731F00A3BFEB /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		44AD622B2D8199D100A3BFEB /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
+		44AD622D2D81E98500A3BFEB /* HallVieww.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HallVieww.swift; sourceTree = "<group>"; };
+		44AD62302D81F15200A3BFEB /* HallViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HallViewModel.swift; sourceTree = "<group>"; };
+		44AD62322D81F16400A3BFEB /* HallModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HallModel.swift; sourceTree = "<group>"; };
+		44AD62342D8201BC00A3BFEB /* HallBuilderr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HallBuilderr.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +117,7 @@
 				44AD62042D79B03D00A3BFEB /* HallViewController */,
 				44AD62172D7D1C3C00A3BFEB /* Orders */,
 				44AD62222D7DC3C000A3BFEB /* Payment */,
+				44AD622F2D81E99400A3BFEB /* MVVM */,
 				44AD61F62D78D6D900A3BFEB /* Model.swift */,
 				44AD62252D7E362F00A3BFEB /* Extentions.swift */,
 				44AD62292D7E731F00A3BFEB /* Validator.swift */,
@@ -174,6 +183,17 @@
 				44AD62202D7DC3B400A3BFEB /* PaymentBuilder.swift */,
 			);
 			path = Payment;
+			sourceTree = "<group>";
+		};
+		44AD622F2D81E99400A3BFEB /* MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				44AD62322D81F16400A3BFEB /* HallModel.swift */,
+				44AD622D2D81E98500A3BFEB /* HallVieww.swift */,
+				44AD62302D81F15200A3BFEB /* HallViewModel.swift */,
+				44AD62342D8201BC00A3BFEB /* HallBuilderr.swift */,
+			);
+			path = MVVM;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -253,8 +273,11 @@
 				44AD622A2D7E731F00A3BFEB /* Validator.swift in Sources */,
 				44AD62212D7DC3B400A3BFEB /* PaymentBuilder.swift in Sources */,
 				44AD61E72D78D45A00A3BFEB /* HallViewController.swift in Sources */,
+				44AD62352D8201BC00A3BFEB /* HallBuilderr.swift in Sources */,
 				44AD61F72D78D6D900A3BFEB /* Model.swift in Sources */,
 				44AD622C2D8199D100A3BFEB /* AlertManager.swift in Sources */,
+				44AD622E2D81E98500A3BFEB /* HallVieww.swift in Sources */,
+				44AD62332D81F16400A3BFEB /* HallModel.swift in Sources */,
 				44AD61F92D78D73100A3BFEB /* NetworkManager.swift in Sources */,
 				44AD621B2D7DC37700A3BFEB /* PaymentViewController.swift in Sources */,
 				44AD62122D7B919E00A3BFEB /* OrderInteractor.swift in Sources */,
@@ -273,6 +296,7 @@
 				44AD621F2D7DC3A200A3BFEB /* PaymentPresenter.swift in Sources */,
 				44AD62162D7B91EA00A3BFEB /* OrderBuilder.swift in Sources */,
 				44AD62142D7B91AC00A3BFEB /* OrderPresenter.swift in Sources */,
+				44AD62312D81F15200A3BFEB /* HallViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

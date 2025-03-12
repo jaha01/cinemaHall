@@ -45,19 +45,6 @@ struct SeatType: Decodable {
     let seatType: String
 }
 
-struct SeatWithPrice: Equatable {
-    let seat: Seat
-    let price: Int
-}
-
-
-struct SessionInfo {
-    let date: String
-    let hall: String
-    let movieState: String
-    let freePlaces: String
-}
-
 class CustomError: Error {
     var message: String
     init(message: String) {

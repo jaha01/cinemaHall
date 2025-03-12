@@ -1,23 +1,27 @@
 //
-//  ViewController.swift
+//  HallVC.swift
 //  cinemaHall
 //
-//  Created by Jahongir Anvarov on 05.03.2025.
+//  Created by Jahongir Anvarov on 12.03.2025.
 //
 
 import UIKit
 
-protocol ViewControllerProtocol: AnyObject {
+protocol HallViewProtocol: AnyObject {
     func configureSeats(seats: [SeatWithPrice])
     func configureHall(sessionInfo: SessionInfo, seatsType: [SeatType])
     func updateHallView(totalPrice: Int)
 }
 
-final class HallViewController: UIViewController, ViewControllerProtocol {
+
+
+// MARK: - ViewModel
+final class HallVieww: UIViewController, HallViewProtocol {
     
+ 
     // MARK: - Public Properties
     
-    var interactor: InteractorProtocol!
+    var viewModel: HallViewModelProtocol!
     
     // MARK: - Private Properties
     private var selectedSeats: [SeatWithPrice] = []
@@ -37,7 +41,7 @@ final class HallViewController: UIViewController, ViewControllerProtocol {
         view.backgroundColor = .systemBackground
         totalView.isHidden = true
         totalView.delegate = self
-        interactor.loadData()
+        viewModel.loadData()
     }
     
     func configureHall(sessionInfo: SessionInfo, seatsType: [SeatType]) {
@@ -93,7 +97,7 @@ final class HallViewController: UIViewController, ViewControllerProtocol {
     
 }
 
-extension HallViewController: SeatViewDelegate {
+extension HallVieww: SeatViewDelegate {
     
     func didTapSeat(seatWithPrice: SeatWithPrice) {
         if let index = selectedSeats.firstIndex(of: seatWithPrice) {
@@ -105,7 +109,7 @@ extension HallViewController: SeatViewDelegate {
             }
         }
         hallView.configureSeats(seatWithPrice: seatWithPrice, selectedSeats: selectedSeats)
-        interactor.calcTotalSum(seats: selectedSeats)
+        viewModel.calcTotalSum(seats: selectedSeats)
     }
     
     func alertBookedSeat() {
@@ -113,8 +117,8 @@ extension HallViewController: SeatViewDelegate {
     }
 }
 
-extension HallViewController: TotalViewDelegate {
+extension HallVieww: TotalViewDelegate {
     func didTapNextBtn() {
-        interactor.transferOrder(selectedSeats: selectedSeats, totalView: totalView)
+        viewModel.transferOrder(selectedSeats: selectedSeats, totalView: totalView)
     }
 }

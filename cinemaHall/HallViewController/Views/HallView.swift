@@ -9,15 +9,13 @@ import UIKit
 
 final class HallView: UIView {
     
-    // MARK: - Public Properties
+    // MARK: - Private Properties
     
-    let hallMapView: UIView = {
+    private let hallMapView: UIView = {
         let hallMapView = UIView()
         hallMapView.translatesAutoresizingMaskIntoConstraints = false
         return hallMapView
     }()
-    
-    // MARK: - Private Properties
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -162,7 +160,20 @@ final class HallView: UIView {
             case "VIP": vipLabel.text = "\(type.name) - \(type.price)c."
             case "COMFORT": comfortLabel.text = "\(type.name) - \(type.price)c."
             case "STANDARD": standartLabel.text = "\(type.name) - \(type.price)c."
-            default: "1"
+            default: ""
+            }
+        }
+    }
+    
+    func configSeatView(seatView: SeatView) {
+        hallMapView.addSubview(seatView)
+    }
+    
+    func configureSeats(seatWithPrice: SeatWithPrice, selectedSeats: [SeatWithPrice]) {
+        let shouldDisable = selectedSeats.count >= 5
+        for subview in hallMapView.subviews {
+            if let seatView = subview as? SeatView, !selectedSeats.contains(seatView.seatWithPrice) {
+                seatView.isEnabled = !shouldDisable
             }
         }
     }
