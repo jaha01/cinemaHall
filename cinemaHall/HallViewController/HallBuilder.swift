@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class HallBuilderr {
+final class HallBuilder {
     
     func build() -> UIViewController {
         
