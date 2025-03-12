@@ -11,12 +11,10 @@ final class HallBuilderr {
     
     func build() -> UIViewController {
         
-        let controller = HallVieww()
         let viewModel = HallViewModel(networkService: DI.shared.networkClient)
+        let controller = HallViewController(viewModel: viewModel)
         let router = HallRouter()
         
-        controller.viewModel = viewModel
-        viewModel.view = controller
         router.viewController = controller
         viewModel.router = router
         

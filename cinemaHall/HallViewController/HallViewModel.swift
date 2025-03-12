@@ -1,24 +1,33 @@
 //
-//  Interactor.swift
+//  HallView.swift
 //  cinemaHall
 //
-//  Created by Jahongir Anvarov on 06.03.2025.
+//  Created by Jahongir Anvarov on 12.03.2025.
 //
 
 import Foundation
+
 import UIKit
 
-protocol InteractorProtocol {
+protocol HallViewModelProtocol {
+    var configureSeats: (([SeatWithPrice]) -> Void)? { get set }
+    var configureHall: ((SessionInfo, [SeatType]) -> Void)? { get set }
+    var updateHallView: ((Int) -> Void)? { get set}
+
     func loadData()
     func transferOrder(selectedSeats: [SeatWithPrice], totalView: TotalView)
-    func calcTotalSum(seats: [SeatWithPrice]) 
+    func calcTotalSum(seats: [SeatWithPrice])
+    func canAddTickets(selectedSeats: [SeatWithPrice]) -> Bool 
 }
 
-final class HallInteractor: InteractorProtocol {
+final class HallViewModel: HallViewModelProtocol {
     
     // MARK: - Public properties
     
-    var presenter: PresenterProtocol!
+    var configureSeats: (([SeatWithPrice]) -> Void)?
+    var configureHall: ((SessionInfo, [SeatType]) -> Void)?
+    var updateHallView: ((Int) -> Void)?
+
     var router: RouterProtocol!
     
     // MARK: - Private properties
@@ -47,8 +56,8 @@ final class HallInteractor: InteractorProtocol {
                 }
                 
                 DispatchQueue.main.async {
-                    self.presenter.prepareHall(session: SessionInfo(date: "\(self.formatDate(session.sessionDate)) \(session.sessionTime)", hall: session.hallName, movieState: session.hasStartedText, freePlaces: String(freePlaces)), seatsType: session.seatsType)
-                    self.presenter.prepareSeats(seats: seatsWithPrices)
+                    self.configureHall?(SessionInfo(date: "\(self.formatDate(session.sessionDate)) \(session.sessionTime)", hall: session.hallName, movieState: session.hasStartedText, freePlaces: String(freePlaces)), session.seatsType)
+                    self.configureSeats?(seatsWithPrices)
                 }
                 
             case .failure(let error):
@@ -58,15 +67,20 @@ final class HallInteractor: InteractorProtocol {
     }
     
     func calcTotalSum(seats: [SeatWithPrice]) {
-        presenter.setPrice(sum: seats.reduce(0) { $0 + $1.price })
+        self.updateHallView?(seats.reduce(0) { $0 + $1.price })
     }
     
     func transferOrder(selectedSeats: [SeatWithPrice], totalView: TotalView) {
         router.navigateToOrderScreen(selectedSeats: selectedSeats, totalView: totalView)
     }
+ 
+    func canAddTickets(selectedSeats: [SeatWithPrice]) -> Bool {
+        return selectedSeats.count < 5
+    }
     
-    func formatDate(_ date: Date) -> String {
+    // MARK: - Private Methods
+    
+    private func formatDate(_ date: Date) -> String {
         return DateFormatter.longDateFormat.string(from: date)
     }
 }
-

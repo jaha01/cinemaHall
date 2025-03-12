@@ -1,25 +1,16 @@
 //
-//  ViewController.swift
+//  HallVC.swift
 //  cinemaHall
 //
-//  Created by Jahongir Anvarov on 05.03.2025.
+//  Created by Jahongir Anvarov on 12.03.2025.
 //
 
 import UIKit
 
-protocol ViewControllerProtocol: AnyObject {
-    func configureSeats(seats: [SeatWithPrice])
-    func configureHall(sessionInfo: SessionInfo, seatsType: [SeatType])
-    func updateHallView(totalPrice: Int)
-}
-
-final class HallViewController: UIViewController, ViewControllerProtocol {
-    
-    // MARK: - Public Properties
-    
-    var interactor: InteractorProtocol!
+final class HallViewController: UIViewController {
     
     // MARK: - Private Properties
+    private var viewModel: HallViewModelProtocol!
     private var selectedSeats: [SeatWithPrice] = []
     
     private let hallView: HallView = {
@@ -31,24 +22,30 @@ final class HallViewController: UIViewController, ViewControllerProtocol {
     private let totalView = TotalView()
     
     // MARK: - Public methods
+
+    init(viewModel: HallViewModelProtocol) {
+      super.init(nibName: nil, bundle: nil)
+      self.viewModel = viewModel
+      setupBindings()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         totalView.isHidden = true
         totalView.delegate = self
-        interactor.loadData()
+        viewModel.loadData()
     }
     
-    func configureHall(sessionInfo: SessionInfo, seatsType: [SeatType]) {
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            self.hallView.configure(sessionInfo: sessionInfo, seatsType: seatsType)
-            self.setupUI()
-        }
-    }
+    // MARK: - Private methods
     
-    func configureSeats(seats: [SeatWithPrice]) {
+    private func setupBindings() {
+        
+      viewModel.configureSeats = { [weak self] seats in
         for seatWithPrice in seats {
             let seatView = SeatView(seatWithPrice: seatWithPrice)
             let seat = seatWithPrice.seat
@@ -56,22 +53,29 @@ final class HallViewController: UIViewController, ViewControllerProtocol {
             let yPosition = seat.top*7/5
             seatView.delegate = self
             seatView.frame = CGRect(x: xPosition-200, y: yPosition-100, width: 40, height: 40)
-            hallView.configSeatView(seatView: seatView)
+            self?.hallView.configSeatView(seatView: seatView)
         }
-    }
-    
-    // MARK: - Private methods
-    
-    func updateHallView(totalPrice: Int) {
+      }
+
+      viewModel.configureHall = { [weak self] sessionInfo, seatsType in
+         DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+             self.hallView.configure(sessionInfo: sessionInfo, seatsType: seatsType)
+             self.setupUI()
+        }
+      }
+
+      viewModel.updateHallView = { [weak self] totalPrice in
         if totalPrice > 0 {
-            DispatchQueue.main.async { [weak self] in
+            DispatchQueue.main.async {
                 guard let self = self else { return }
                 self.totalView.isHidden = false
                 self.totalView.configure(price: totalPrice, btnName: "Далее")
             }
         } else {
-            totalView.isHidden = true
+            self?.totalView.isHidden = true
         }
+      }
     }
     
     private func setupUI() {
@@ -100,12 +104,13 @@ extension HallViewController: SeatViewDelegate {
             selectedSeats.remove(at: index)
         } else {
             selectedSeats.append(seatWithPrice)
-            if selectedSeats.count >= 5 {
+            
+            if !viewModel.canAddTickets(selectedSeats: selectedSeats) {
                 AlertManager.showAlert(config: AlertConfig(title: "Внимание", message: "Можно выбрать не более 5 мест"))
             }
         }
         hallView.configureSeats(seatWithPrice: seatWithPrice, selectedSeats: selectedSeats)
-        interactor.calcTotalSum(seats: selectedSeats)
+        viewModel.calcTotalSum(seats: selectedSeats)
     }
     
     func alertBookedSeat() {
@@ -115,6 +120,6 @@ extension HallViewController: SeatViewDelegate {
 
 extension HallViewController: TotalViewDelegate {
     func didTapNextBtn() {
-        interactor.transferOrder(selectedSeats: selectedSeats, totalView: totalView)
+        viewModel.transferOrder(selectedSeats: selectedSeats, totalView: totalView)
     }
 }
