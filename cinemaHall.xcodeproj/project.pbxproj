@@ -118,7 +118,7 @@
 				44AD62172D7D1C3C00A3BFEB /* Orders */,
 				44AD62222D7DC3C000A3BFEB /* Payment */,
 				44AD622F2D81E99400A3BFEB /* MVVM */,
-				44AD61F62D78D6D900A3BFEB /* Model.swift */,
+				44AD62362D82085C00A3BFEB /* Models */,
 				44AD62252D7E362F00A3BFEB /* Extentions.swift */,
 				44AD62292D7E731F00A3BFEB /* Validator.swift */,
 				44AD622B2D8199D100A3BFEB /* AlertManager.swift */,
@@ -188,12 +188,20 @@
 		44AD622F2D81E99400A3BFEB /* MVVM */ = {
 			isa = PBXGroup;
 			children = (
-				44AD62322D81F16400A3BFEB /* HallModel.swift */,
 				44AD622D2D81E98500A3BFEB /* HallVieww.swift */,
 				44AD62302D81F15200A3BFEB /* HallViewModel.swift */,
 				44AD62342D8201BC00A3BFEB /* HallBuilderr.swift */,
 			);
 			path = MVVM;
+			sourceTree = "<group>";
+		};
+		44AD62362D82085C00A3BFEB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				44AD61F62D78D6D900A3BFEB /* Model.swift */,
+				44AD62322D81F16400A3BFEB /* HallModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
