@@ -10,7 +10,6 @@ import UIKit
 final class HallBuilder {
     
     func build() -> UIViewController {
-        
         let viewModel = HallViewModel(networkService: DI.shared.networkClient)
         let controller = HallViewController(viewModel: viewModel)
         let router = HallRouter()

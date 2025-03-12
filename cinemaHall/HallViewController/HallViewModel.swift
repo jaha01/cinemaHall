@@ -13,11 +13,13 @@ protocol HallViewModelProtocol {
     var configureSeats: (([SeatWithPrice]) -> Void)? { get set }
     var configureHall: ((SessionInfo, [SeatType]) -> Void)? { get set }
     var updateHallView: ((Int) -> Void)? { get set}
+    var showAlert: ((String, String) -> Void)? {get set}
 
     func loadData()
     func transferOrder(selectedSeats: [SeatWithPrice], totalView: TotalView)
     func calcTotalSum(seats: [SeatWithPrice])
-    func canAddTickets(selectedSeats: [SeatWithPrice]) -> Bool 
+    func canAddTickets(selectedSeats: [SeatWithPrice]) -> Bool
+    func validateSeats(selectedSeats: [SeatWithPrice])
 }
 
 final class HallViewModel: HallViewModelProtocol {
@@ -27,11 +29,13 @@ final class HallViewModel: HallViewModelProtocol {
     var configureSeats: (([SeatWithPrice]) -> Void)?
     var configureHall: ((SessionInfo, [SeatType]) -> Void)?
     var updateHallView: ((Int) -> Void)?
+    var showAlert: ((String, String) -> Void)?
 
     var router: RouterProtocol!
     
     // MARK: - Private properties
     private let networkService: NetworkManagerProtocol
+    private let maxAllowedSeats = 5
     
     init(networkService: NetworkManagerProtocol) {
         self.networkService = networkService
@@ -75,7 +79,13 @@ final class HallViewModel: HallViewModelProtocol {
     }
  
     func canAddTickets(selectedSeats: [SeatWithPrice]) -> Bool {
-        return selectedSeats.count < 5
+        return selectedSeats.count < maxAllowedSeats
+    }
+    
+    func validateSeats(selectedSeats: [SeatWithPrice]) {
+        if !canAddTickets(selectedSeats: selectedSeats) {
+            showAlert?("Внимание", "Можно выбрать не более \(maxAllowedSeats) мест")
+        }
     }
     
     // MARK: - Private Methods

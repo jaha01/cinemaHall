@@ -36,7 +36,7 @@ extension UITextField {
 extension UIApplication {
     
     func getTopViewController() -> UIViewController {
-        guard let base = UIApplication.shared.connectedScenes.compactMap { ($0 as? UIWindowScene)?.keyWindow }.last?.rootViewController else {
+        guard let base = UIApplication.shared.connectedScenes.compactMap({ ($0 as? UIWindowScene)?.keyWindow }).last?.rootViewController else {
             return UIViewController()
        }
        

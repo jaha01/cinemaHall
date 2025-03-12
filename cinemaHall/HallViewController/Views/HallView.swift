@@ -160,7 +160,7 @@ final class HallView: UIView {
             case "VIP": vipLabel.text = "\(type.name) - \(type.price)c."
             case "COMFORT": comfortLabel.text = "\(type.name) - \(type.price)c."
             case "STANDARD": standartLabel.text = "\(type.name) - \(type.price)c."
-            default: ""
+            default: break
             }
         }
     }
@@ -169,11 +169,10 @@ final class HallView: UIView {
         hallMapView.addSubview(seatView)
     }
     
-    func configureSeats(seatWithPrice: SeatWithPrice, selectedSeats: [SeatWithPrice]) {
-        let shouldDisable = selectedSeats.count >= 5
+    func configureSeats(seatWithPrice: SeatWithPrice, selectedSeats: [SeatWithPrice], canAddTickets: Bool) {
         for subview in hallMapView.subviews {
             if let seatView = subview as? SeatView, !selectedSeats.contains(seatView.seatWithPrice) {
-                seatView.isEnabled = !shouldDisable
+                seatView.isEnabled = canAddTickets
             }
         }
     }
