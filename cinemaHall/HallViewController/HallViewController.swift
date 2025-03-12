@@ -1,25 +1,16 @@
 //
-//  ViewController.swift
+//  HallVC.swift
 //  cinemaHall
 //
-//  Created by Jahongir Anvarov on 05.03.2025.
+//  Created by Jahongir Anvarov on 12.03.2025.
 //
 
 import UIKit
 
-protocol ViewControllerProtocol: AnyObject {
-    func configureSeats(seats: [SeatWithPrice])
-    func configureHall(sessionInfo: SessionInfo, seatsType: [SeatType])
-    func updateHallView(totalPrice: Int)
-}
-
-final class HallViewController: UIViewController, ViewControllerProtocol {
-    
-    // MARK: - Public Properties
-    
-    var interactor: InteractorProtocol!
+final class HallViewController: UIViewController {
     
     // MARK: - Private Properties
+    private var viewModel: HallViewModelProtocol
     private var selectedSeats: [SeatWithPrice] = []
     
     private let hallView: HallView = {
@@ -32,45 +23,63 @@ final class HallViewController: UIViewController, ViewControllerProtocol {
     
     // MARK: - Public methods
     
+    init(viewModel: HallViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+        setupBindings()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         totalView.isHidden = true
         totalView.delegate = self
-        interactor.loadData()
-    }
-    
-    func configureHall(sessionInfo: SessionInfo, seatsType: [SeatType]) {
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            self.hallView.configure(sessionInfo: sessionInfo, seatsType: seatsType)
-            self.setupUI()
-        }
-    }
-    
-    func configureSeats(seats: [SeatWithPrice]) {
-        for seatWithPrice in seats {
-            let seatView = SeatView(seatWithPrice: seatWithPrice)
-            let seat = seatWithPrice.seat
-            let xPosition = seat.left*7/5
-            let yPosition = seat.top*7/5
-            seatView.delegate = self
-            seatView.frame = CGRect(x: xPosition-200, y: yPosition-100, width: 40, height: 40)
-            hallView.hallMapView.addSubview(seatView)
-        }
+        viewModel.loadData()
     }
     
     // MARK: - Private methods
     
-    func updateHallView(totalPrice: Int) {
-        if totalPrice > 0 {
+    private func setupBindings() {
+        
+        viewModel.configureSeats = { [weak self] seats in
+            for seatWithPrice in seats {
+                let seatView = SeatView(seatWithPrice: seatWithPrice)
+                let seat = seatWithPrice.seat
+                let xPosition = seat.left*7/5
+                let yPosition = seat.top*7/5
+                seatView.delegate = self
+                seatView.frame = CGRect(x: xPosition-200, y: yPosition-100, width: 40, height: 40)
+                self?.hallView.configSeatView(seatView: seatView)
+            }
+            
+        }
+        
+        viewModel.showAlert = { title, message in
+            AlertManager.showAlert(config: AlertConfig(title: title, message: message))
+        }
+        
+        viewModel.configureHall = { [weak self] sessionInfo, seatsType in
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
-                self.totalView.isHidden = false
-                self.totalView.configure(price: totalPrice, btnName: "Далее")
+                self.hallView.configure(sessionInfo: sessionInfo, seatsType: seatsType)
+                self.setupUI()
             }
-        } else {
-            totalView.isHidden = true
+        }
+        
+        viewModel.updateHallView = { [weak self] totalPrice in
+            if totalPrice > 0 {
+                DispatchQueue.main.async {
+                    guard let self = self else { return }
+                    self.totalView.isHidden = false
+                    self.totalView.configure(price: totalPrice, btnName: "Далее")
+                }
+            } else {
+                self?.totalView.isHidden = true
+            }
         }
     }
     
@@ -94,18 +103,26 @@ final class HallViewController: UIViewController, ViewControllerProtocol {
 }
 
 extension HallViewController: SeatViewDelegate {
+    
     func didTapSeat(seatWithPrice: SeatWithPrice) {
         if let index = selectedSeats.firstIndex(of: seatWithPrice) {
             selectedSeats.remove(at: index)
         } else {
             selectedSeats.append(seatWithPrice)
         }
-        interactor.calcTotalSum(seats: selectedSeats)
+        
+        viewModel.validateSeats(selectedSeats: selectedSeats)
+        hallView.configureSeats(seatWithPrice: seatWithPrice, selectedSeats: selectedSeats, canAddTickets: viewModel.canAddTickets(selectedSeats: selectedSeats))
+        viewModel.calcTotalSum(seats: selectedSeats)
+    }
+    
+    func alertBookedSeat() {
+        AlertManager.showAlert(config: AlertConfig(title: "Место забронировано", message: "Это место уже забронировано. Пожалуйста, выберите другое."))
     }
 }
 
 extension HallViewController: TotalViewDelegate {
     func didTapNextBtn() {
-        interactor.transferOrder(selectedSeats: selectedSeats, totalView: totalView)
+        viewModel.transferOrder(selectedSeats: selectedSeats, totalView: totalView)
     }
 }

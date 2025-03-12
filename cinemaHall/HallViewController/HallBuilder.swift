@@ -1,8 +1,8 @@
 //
-//  Builder.swift
+//  HallBuilderr.swift
 //  cinemaHall
 //
-//  Created by Jahongir Anvarov on 06.03.2025.
+//  Created by Jahongir Anvarov on 12.03.2025.
 //
 
 import UIKit
@@ -10,16 +10,12 @@ import UIKit
 final class HallBuilder {
     
     func build() -> UIViewController {
-        let controller = HallViewController()
-        let interactor = HallInteractor(networkService: DI.shared.networkClient)
-        let presenter = HallPresenter()
+        let viewModel = HallViewModel(networkService: DI.shared.networkClient)
+        let controller = HallViewController(viewModel: viewModel)
         let router = HallRouter()
         
-        controller.interactor = interactor
-        interactor.presenter = presenter
-        presenter.viewController = controller
         router.viewController = controller
-        interactor.router = router
+        viewModel.router = router
         
         return controller
     }

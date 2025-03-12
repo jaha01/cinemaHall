@@ -9,6 +9,7 @@ import UIKit
 
 protocol SeatViewDelegate: AnyObject {
     func didTapSeat(seatWithPrice: SeatWithPrice)
+    func alertBookedSeat()
 }
 
 final class SeatView: UIButton {
@@ -20,7 +21,8 @@ final class SeatView: UIButton {
     // MARK: - Private properties
     
     private static let selectedColor = UIColor.green
-    private let seatWithPrice: SeatWithPrice
+    var seatWithPrice: SeatWithPrice
+    private var initialImage: UIImage?
     
     init(seatWithPrice: SeatWithPrice) {
         self.seatWithPrice = seatWithPrice
@@ -42,19 +44,24 @@ final class SeatView: UIButton {
         
         layer.cornerRadius = 8
         layer.masksToBounds = true
-        backgroundColor = seatColor()
+//        backgroundColor = seatColor()
         
-        if seat.bookedSeats == 1 {
-            backgroundColor = .lightGray
-            isEnabled = false
-        }
+//        if seat.bookedSeats == 1 {
+//            backgroundColor = .lightGray
+//            isEnabled = false
+//        }
         
         addTarget(self, action: #selector(seatTapped), for: .touchUpInside)
+        seatImages()
     }
     
     @objc private func seatTapped() {
-        delegate?.didTapSeat(seatWithPrice: seatWithPrice)
-        backgroundColor = backgroundColor == SeatView.selectedColor ? seatColor() : SeatView.selectedColor
+        if seatWithPrice.seat.bookedSeats > 0 {
+            delegate?.alertBookedSeat()
+        } else {
+            delegate?.didTapSeat(seatWithPrice: seatWithPrice)
+            tappedButton()
+        }
     }
     
     private func seatColor() -> UIColor {
@@ -64,5 +71,30 @@ final class SeatView: UIButton {
         case "STANDARD": return .lightGray
         default: return .darkGray
         }
+    }
+    
+    private func seatImages() {
+        
+        if seatWithPrice.seat.bookedSeats > 0 {
+            setImage(UIImage(named: "seat-busy"), for: .normal)
+            return
+        }
+        
+        switch seatWithPrice.seat.seatType {
+        case "VIP": setImage(UIImage(named: "seat-vip"), for: .normal)
+        case "COMFORT": setImage(UIImage(named: "seat-default"), for: .normal)
+        case "STANDARD": setImage(UIImage(named: "seat-default"), for: .normal)
+        default: return setImage(UIImage(named: ""), for: .normal)
+        }
+    }
+
+    func tappedButton() {
+        if initialImage == nil {
+            initialImage = currentImage
+        }
+        
+        let isSelected = currentImage == UIImage(named: "seat-selected")
+        let newImage = isSelected ? initialImage : UIImage(named: "seat-selected")
+        setImage(newImage, for: .normal)
     }
 }

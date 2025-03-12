@@ -148,7 +148,9 @@ final class PaymentViewController: UIViewController, PaymentViewControllerProtoc
            let cvv = cvvField.text, !cvv.isEmpty,
            let name = nameField.text, !name.isEmpty,
            let email = emailField.text, !email.isEmpty  {
-            showAlert(withTitle: "Успех", message: "На указанный вами Email отправлены билеты и чек")
+           AlertManager.showAlert(config: AlertConfig(title: "Успех", message: "На указанный вами Email отправлены билеты и чек")) {
+               self.closeButtonTapped()
+            }
         }
     }
     
@@ -201,16 +203,6 @@ final class PaymentViewController: UIViewController, PaymentViewControllerProtoc
             emailField.trailingAnchor.constraint(equalTo: panField.trailingAnchor),
             emailField.heightAnchor.constraint(equalToConstant: 40)
         ])
-    }
-    
-    private func showAlert(withTitle title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "ОК", style: .default) { [weak self] _ in
-            guard let self = self else { return }
-            self.closeButtonTapped()
-        }
-        alertController.addAction(okAction)
-        present(alertController, animated: true, completion: nil)
     }
 }
 

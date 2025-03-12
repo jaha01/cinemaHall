@@ -9,15 +9,11 @@
 /* Begin PBXBuildFile section */
 		44AD61E32D78D45A00A3BFEB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD61E22D78D45A00A3BFEB /* AppDelegate.swift */; };
 		44AD61E52D78D45A00A3BFEB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD61E42D78D45A00A3BFEB /* SceneDelegate.swift */; };
-		44AD61E72D78D45A00A3BFEB /* HallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD61E62D78D45A00A3BFEB /* HallViewController.swift */; };
 		44AD61EC2D78D45F00A3BFEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44AD61EB2D78D45F00A3BFEB /* Assets.xcassets */; };
 		44AD61EF2D78D45F00A3BFEB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44AD61ED2D78D45F00A3BFEB /* LaunchScreen.storyboard */; };
 		44AD61F72D78D6D900A3BFEB /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD61F62D78D6D900A3BFEB /* Model.swift */; };
 		44AD61F92D78D73100A3BFEB /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD61F82D78D73000A3BFEB /* NetworkManager.swift */; };
 		44AD61FD2D78E98600A3BFEB /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD61FC2D78E98600A3BFEB /* NetworkConfig.swift */; };
-		44AD61FF2D79B00F00A3BFEB /* HallInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD61FE2D79B00F00A3BFEB /* HallInteractor.swift */; };
-		44AD62012D79B01F00A3BFEB /* HallPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD62002D79B01F00A3BFEB /* HallPresenter.swift */; };
-		44AD62032D79B03400A3BFEB /* HallBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD62022D79B03400A3BFEB /* HallBuilder.swift */; };
 		44AD62062D79B33500A3BFEB /* HallRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD62052D79B33500A3BFEB /* HallRouter.swift */; };
 		44AD62092D79C5C200A3BFEB /* DI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD62082D79C5C200A3BFEB /* DI.swift */; };
 		44AD620B2D79CC2200A3BFEB /* HallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD620A2D79CC2200A3BFEB /* HallView.swift */; };
@@ -35,22 +31,23 @@
 		44AD62262D7E362F00A3BFEB /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD62252D7E362F00A3BFEB /* Extentions.swift */; };
 		44AD62282D7E40FC00A3BFEB /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD62272D7E40FC00A3BFEB /* OrderTableViewCell.swift */; };
 		44AD622A2D7E731F00A3BFEB /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD62292D7E731F00A3BFEB /* Validator.swift */; };
+		44AD622C2D8199D100A3BFEB /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD622B2D8199D100A3BFEB /* AlertManager.swift */; };
+		44AD622E2D81E98500A3BFEB /* HallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD622D2D81E98500A3BFEB /* HallViewController.swift */; };
+		44AD62312D81F15200A3BFEB /* HallViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD62302D81F15200A3BFEB /* HallViewModel.swift */; };
+		44AD62332D81F16400A3BFEB /* HallModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD62322D81F16400A3BFEB /* HallModel.swift */; };
+		44AD62352D8201BC00A3BFEB /* HallBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AD62342D8201BC00A3BFEB /* HallBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		44AD61DF2D78D45A00A3BFEB /* cinemaHall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cinemaHall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44AD61E22D78D45A00A3BFEB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44AD61E42D78D45A00A3BFEB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		44AD61E62D78D45A00A3BFEB /* HallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HallViewController.swift; sourceTree = "<group>"; };
 		44AD61EB2D78D45F00A3BFEB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		44AD61EE2D78D45F00A3BFEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		44AD61F02D78D45F00A3BFEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		44AD61F62D78D6D900A3BFEB /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		44AD61F82D78D73000A3BFEB /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		44AD61FC2D78E98600A3BFEB /* NetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
-		44AD61FE2D79B00F00A3BFEB /* HallInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HallInteractor.swift; sourceTree = "<group>"; };
-		44AD62002D79B01F00A3BFEB /* HallPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HallPresenter.swift; sourceTree = "<group>"; };
-		44AD62022D79B03400A3BFEB /* HallBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HallBuilder.swift; sourceTree = "<group>"; };
 		44AD62052D79B33500A3BFEB /* HallRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HallRouter.swift; sourceTree = "<group>"; };
 		44AD62082D79C5C200A3BFEB /* DI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DI.swift; sourceTree = "<group>"; };
 		44AD620A2D79CC2200A3BFEB /* HallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HallView.swift; sourceTree = "<group>"; };
@@ -68,6 +65,11 @@
 		44AD62252D7E362F00A3BFEB /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		44AD62272D7E40FC00A3BFEB /* OrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
 		44AD62292D7E731F00A3BFEB /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
+		44AD622B2D8199D100A3BFEB /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
+		44AD622D2D81E98500A3BFEB /* HallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HallViewController.swift; sourceTree = "<group>"; };
+		44AD62302D81F15200A3BFEB /* HallViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HallViewModel.swift; sourceTree = "<group>"; };
+		44AD62322D81F16400A3BFEB /* HallModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HallModel.swift; sourceTree = "<group>"; };
+		44AD62342D8201BC00A3BFEB /* HallBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HallBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,9 +109,10 @@
 				44AD62042D79B03D00A3BFEB /* HallViewController */,
 				44AD62172D7D1C3C00A3BFEB /* Orders */,
 				44AD62222D7DC3C000A3BFEB /* Payment */,
-				44AD61F62D78D6D900A3BFEB /* Model.swift */,
+				44AD62362D82085C00A3BFEB /* Models */,
 				44AD62252D7E362F00A3BFEB /* Extentions.swift */,
 				44AD62292D7E731F00A3BFEB /* Validator.swift */,
+				44AD622B2D8199D100A3BFEB /* AlertManager.swift */,
 				44AD61EB2D78D45F00A3BFEB /* Assets.xcassets */,
 				44AD61ED2D78D45F00A3BFEB /* LaunchScreen.storyboard */,
 				44AD61F02D78D45F00A3BFEB /* Info.plist */,
@@ -120,11 +123,10 @@
 		44AD62042D79B03D00A3BFEB /* HallViewController */ = {
 			isa = PBXGroup;
 			children = (
-				44AD61E62D78D45A00A3BFEB /* HallViewController.swift */,
-				44AD61FE2D79B00F00A3BFEB /* HallInteractor.swift */,
-				44AD62002D79B01F00A3BFEB /* HallPresenter.swift */,
+				44AD622D2D81E98500A3BFEB /* HallViewController.swift */,
+				44AD62302D81F15200A3BFEB /* HallViewModel.swift */,
 				44AD62052D79B33500A3BFEB /* HallRouter.swift */,
-				44AD62022D79B03400A3BFEB /* HallBuilder.swift */,
+				44AD62342D8201BC00A3BFEB /* HallBuilder.swift */,
 				44AD620E2D7A06C100A3BFEB /* Views */,
 			);
 			path = HallViewController;
@@ -171,6 +173,15 @@
 				44AD62202D7DC3B400A3BFEB /* PaymentBuilder.swift */,
 			);
 			path = Payment;
+			sourceTree = "<group>";
+		};
+		44AD62362D82085C00A3BFEB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				44AD61F62D78D6D900A3BFEB /* Model.swift */,
+				44AD62322D81F16400A3BFEB /* HallModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -244,20 +255,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				44AD62062D79B33500A3BFEB /* HallRouter.swift in Sources */,
-				44AD62012D79B01F00A3BFEB /* HallPresenter.swift in Sources */,
 				44AD61FD2D78E98600A3BFEB /* NetworkConfig.swift in Sources */,
 				44AD620B2D79CC2200A3BFEB /* HallView.swift in Sources */,
 				44AD622A2D7E731F00A3BFEB /* Validator.swift in Sources */,
 				44AD62212D7DC3B400A3BFEB /* PaymentBuilder.swift in Sources */,
-				44AD61E72D78D45A00A3BFEB /* HallViewController.swift in Sources */,
+				44AD62352D8201BC00A3BFEB /* HallBuilder.swift in Sources */,
 				44AD61F72D78D6D900A3BFEB /* Model.swift in Sources */,
+				44AD622C2D8199D100A3BFEB /* AlertManager.swift in Sources */,
+				44AD622E2D81E98500A3BFEB /* HallViewController.swift in Sources */,
+				44AD62332D81F16400A3BFEB /* HallModel.swift in Sources */,
 				44AD61F92D78D73100A3BFEB /* NetworkManager.swift in Sources */,
 				44AD621B2D7DC37700A3BFEB /* PaymentViewController.swift in Sources */,
 				44AD62122D7B919E00A3BFEB /* OrderInteractor.swift in Sources */,
 				44AD61E32D78D45A00A3BFEB /* AppDelegate.swift in Sources */,
 				44AD62092D79C5C200A3BFEB /* DI.swift in Sources */,
 				44AD62192D7DAE5A00A3BFEB /* TotalView.swift in Sources */,
-				44AD61FF2D79B00F00A3BFEB /* HallInteractor.swift in Sources */,
 				44AD62102D7B8B3100A3BFEB /* OrderViewController.swift in Sources */,
 				44AD620D2D7A06B800A3BFEB /* SeatView.swift in Sources */,
 				44AD62282D7E40FC00A3BFEB /* OrderTableViewCell.swift in Sources */,
@@ -265,10 +277,10 @@
 				44AD62242D7DC54200A3BFEB /* OrderRouter.swift in Sources */,
 				44AD621D2D7DC39500A3BFEB /* PaymentInteractor.swift in Sources */,
 				44AD61E52D78D45A00A3BFEB /* SceneDelegate.swift in Sources */,
-				44AD62032D79B03400A3BFEB /* HallBuilder.swift in Sources */,
 				44AD621F2D7DC3A200A3BFEB /* PaymentPresenter.swift in Sources */,
 				44AD62162D7B91EA00A3BFEB /* OrderBuilder.swift in Sources */,
 				44AD62142D7B91AC00A3BFEB /* OrderPresenter.swift in Sources */,
+				44AD62312D81F15200A3BFEB /* HallViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
