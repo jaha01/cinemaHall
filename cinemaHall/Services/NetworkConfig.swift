@@ -9,6 +9,6 @@ import Foundation
 
 struct NetworkConfig {
     
-    let url = URL(string: "https://madridist20.github.io/test11/seat.json")!
+    let url = URL(string: "https://akbarshar1pov.github.io/test//seat.json")!
     
 }

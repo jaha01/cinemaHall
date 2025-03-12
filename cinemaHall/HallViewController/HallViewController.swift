@@ -109,6 +109,12 @@ extension HallViewController: SeatViewDelegate {
         interactor.calcTotalSum(seats: selectedSeats)
     }
     
+    func alertBookedSeat() {
+        AlertManager.showAlert(config: AlertConfig(title: "Место забронировано", message: "Это место уже забронировано. Пожалуйста, выберите другое."))
+    }
+    
+    // MARK: - этот метод перенесу наверх, он изменится
+    
     private func updateSeatSelectionState() {
         let shouldDisable = selectedSeats.count >= 5
         for subview in hallView.hallMapView.subviews {

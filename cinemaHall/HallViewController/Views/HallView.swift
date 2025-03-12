@@ -71,7 +71,7 @@ final class HallView: UIView {
         let button = UIButton()
         button.layer.cornerRadius = 8
         button.layer.masksToBounds = true
-        button.backgroundColor = .red
+        button.setImage(UIImage(named: "seat-vip"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -88,7 +88,7 @@ final class HallView: UIView {
         let button = UIButton()
         button.layer.cornerRadius = 8
         button.layer.masksToBounds = true
-        button.backgroundColor = .blue
+        button.setImage(UIImage(named: "seat-default"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -104,13 +104,30 @@ final class HallView: UIView {
         let button = UIButton()
         button.layer.cornerRadius = 8
         button.layer.masksToBounds = true
-        button.backgroundColor = .lightGray
+        button.setImage(UIImage(named: "seat-default"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     private let standartLabel: UILabel = {
         let label = UILabel()
+        label.font = UIFont(name: "Gill Sans SemiBold", size: 18)!
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let busyBtn: UIButton = {
+        let button = UIButton()
+        button.layer.cornerRadius = 8
+        button.layer.masksToBounds = true
+        button.setImage(UIImage(named: "seat-busy"), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private let busyLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Забронировано"
         label.font = UIFont(name: "Gill Sans SemiBold", size: 18)!
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -145,7 +162,7 @@ final class HallView: UIView {
             case "VIP": vipLabel.text = "\(type.name) - \(type.price)c."
             case "COMFORT": comfortLabel.text = "\(type.name) - \(type.price)c."
             case "STANDARD": standartLabel.text = "\(type.name) - \(type.price)c."
-            default: ""
+            default: "1"
             }
         }
     }
@@ -171,6 +188,8 @@ final class HallView: UIView {
         addSubview(standartLabel)
         addSubview(movieState)
         addSubview(freePlaces)
+        addSubview(busyBtn)
+        addSubview(busyLabel)
         scrollView.addSubview(hallMapView)
         
         NSLayoutConstraint.activate([
@@ -229,8 +248,17 @@ final class HallView: UIView {
             standartBtn.bottomAnchor.constraint(equalTo: standartBtn.topAnchor, constant: 24),
             
             standartLabel.leadingAnchor.constraint(equalTo: standartBtn.trailingAnchor, constant: 12),
-            standartLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            standartLabel.trailingAnchor.constraint(equalTo: standartLabel.leadingAnchor, constant: 160),
             standartLabel.centerYAnchor.constraint(equalTo: standartBtn.centerYAnchor),
+            
+            busyBtn.leadingAnchor.constraint(equalTo: standartLabel.trailingAnchor, constant: 32),
+            busyBtn.trailingAnchor.constraint(equalTo: busyBtn.leadingAnchor, constant: 24),
+            busyBtn.bottomAnchor.constraint(equalTo: busyBtn.topAnchor, constant: 24),
+            busyBtn.centerYAnchor.constraint(equalTo: standartBtn.centerYAnchor),
+            
+            busyLabel.leadingAnchor.constraint(equalTo: busyBtn.trailingAnchor, constant: 12),
+            busyLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            busyLabel.centerYAnchor.constraint(equalTo: standartBtn.centerYAnchor),
             
             scrollView.topAnchor.constraint(equalTo: vipBtn.bottomAnchor, constant: 20),
             scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
